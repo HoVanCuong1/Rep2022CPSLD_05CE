@@ -1,0 +1,6 @@
+Test 1: 
+16
+N
+Test 2: 
+38
+INVALID INDEX
