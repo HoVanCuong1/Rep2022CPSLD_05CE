@@ -36,6 +36,7 @@ public:
     std::string getPhoneNumber() const { return phoneNumber; }
     std::string getFullName() const;
     bool operator == (const Student&);
+    bool operator > (const Student&);
 };
 
 

@@ -30,6 +30,7 @@ public:
     int getCredit() const { return credit; }
     int getLesson() const { return lesson; }
     bool operator == (const Subject&);
+    bool operator > (const Subject&);
 };
 
 #endif /* Subject_hpp */

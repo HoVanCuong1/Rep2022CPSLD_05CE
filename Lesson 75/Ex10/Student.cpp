@@ -94,3 +94,7 @@ string Student::getFullName() const {
 bool Student::operator == (const Student& other) {
     return strcmp(id, other.id) == 0;
 }
+
+bool Student::operator > (const Student& other) {
+    return strcmp(firstName, other.firstName) > 0;
+}

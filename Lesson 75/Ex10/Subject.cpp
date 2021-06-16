@@ -10,7 +10,8 @@
 #include "Subject.hpp"
 using namespace std;
 
-Subject::Subject(std::string id, std::string name, int lesson, int credit) : lesson(lesson), credit(credit) {
+Subject::Subject(std::string id, std::string name, int lesson, int credit) : 
+    lesson(lesson), credit(credit) {
     setId(id);
     setName(name);
 }
@@ -49,4 +50,8 @@ istream& operator >> (istream& is, Subject& subject) {
 
 bool Subject::operator == (const Subject& other) {
     return strcmp(id, other.id) == 0;
+}
+
+bool Subject::operator > (const Subject& other) {
+    return strcmp(name, other.name) > 0;
 }

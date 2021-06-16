@@ -8,14 +8,23 @@
 #ifndef Transcript_hpp
 #define Transcript_hpp
 #include <iostream>
+#include <iomanip>
+using std::left;
+using std::setw;
+using std::istream;
+using std::ostream;
+using std::cout;
+using std::endl;
+using std::fixed;
+using std::setprecision;
 
 template<class T, class V> class Transcript;
-template<class T, class V> std::istream& operator >> (std::istream&, Transcript<T, V>&);
-template<class T, class V> std::ostream& operator << (std::ostream&, const Transcript<T, V>&);
+template<class T, class V> istream& operator >> (istream&, Transcript<T, V>&);
+template<class T, class V> ostream& operator << (ostream&, const Transcript<T, V>&);
 
 template<class T, class V> class Transcript {
-    friend std::istream& operator >> <> (std::istream&, Transcript<T, V>&);
-    friend std::ostream& operator << <> (std::ostream&, const Transcript<T, V>&);
+    friend istream& operator >> <> (istream&, Transcript<T, V>&);
+    friend ostream& operator << <> (ostream&, const Transcript<T, V>&);
     T student;          // thông tin sinh viên
     V subject;          // thông tin môn học
     float scoreLevel1;  // điểm hệ số 1
@@ -50,20 +59,27 @@ public:
     void setScoreLevel3(float score) { scoreLevel3 = score; }
     
     void setScoreLevel4(float score) { gpa = score; }
+
+    void calculateGpa() {
+        gpa = (scoreLevel1 + 2 * scoreLevel2 + 7 * scoreLevel3) / 10;
+    }
 };
 
-template<class T, class V> std::istream& operator >> (std::istream& is, Transcript<T, V>& tran) {
-    std::cout << "Nhap diem he so 1: ";
+template<class T, class V> istream& operator >> (istream& is, Transcript<T, V>& tran) {
+    cout << "Nhap diem he so 1: ";
     is >> tran.scoreLevel1;
-    std::cout << "Nhap diem he so 2: ";
+    cout << "Nhap diem he so 2: ";
     is >> tran.scoreLevel2;
-    std::cout << "Nhap diem he so 3: ";
+    cout << "Nhap diem he so 3: ";
     is >> tran.scoreLevel3;
     return is;
 }
 
-template<class T, class V> std::ostream& operator << (std::ostream& os, const Transcript<T, V>& tran) {
-    std::cout << "Tey: " << tran.key << " - Value: " << tran.value << std::endl;
+template<class T, class V> ostream& operator << (ostream& os, const Transcript<T, V>& tran) {
+    os << left << fixed << setw(15) << tran.getStudent().getId() << setw(25) << tran.getStudent().getFullName()
+        << setw(15) << tran.getSubject().getId() << setw(25) << tran.getSubject().getName()
+        << setw(10) << setprecision(2) << tran.getScoreLevel1() << setw(10) << setprecision(2) << tran.getScoreLevel2() << setw(10)
+        << setprecision(2) << tran.getScoreLevel3() << setw(10) << setprecision(2) << tran.gpa << endl;
     return os;
 }
 
