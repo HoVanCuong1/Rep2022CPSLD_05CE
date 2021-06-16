@@ -1,9 +1,9 @@
-//
-//  Subject.hpp
-//  Lesson75Exercises10
-//
-//  Created by Branium on 14/06/2021.
-//
+/**
+ * @author Branium Academy
+ * @website braniumacademy.net
+ * @version 2021.06
+ * 
+ */
 
 #ifndef Subject_hpp
 #define Subject_hpp

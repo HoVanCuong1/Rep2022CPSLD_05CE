@@ -1,9 +1,9 @@
-//
-//  Exercises4.cpp
-//  Lesson75
-//
-//  Created by Branium on 13/06/2021.
-//
+/**
+ * @author Branium Academy
+ * @website braniumacademy.net
+ * @version 2021.06
+ * 
+ */
 
 #include <iostream>
 using namespace std;
