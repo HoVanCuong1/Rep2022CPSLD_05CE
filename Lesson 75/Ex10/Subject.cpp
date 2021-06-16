@@ -6,6 +6,7 @@
 //
 
 #include <iomanip>
+#include <cstring>
 #include "Subject.hpp"
 using namespace std;
 
@@ -29,7 +30,7 @@ void Subject::setName(std::string name) {
 }
 
 ostream& operator << (ostream& os, const Subject& subject) {
-    os << setw(15) << subject.id << setw(30) << subject.name
+    os << left << setw(15) << subject.id << setw(30) << subject.name
        << setw(10) << subject.lesson << setw(10) << subject.credit << endl;
     return os;
 }
@@ -44,4 +45,8 @@ istream& operator >> (istream& is, Subject& subject) {
     cout << "So tin chi: ";
     is >> subject.credit;
     return is;
+}
+
+bool Subject::operator == (const Subject& other) {
+    return strcmp(id, other.id) == 0;
 }

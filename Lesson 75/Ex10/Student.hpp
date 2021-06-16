@@ -35,6 +35,9 @@ public:
     std::string getEmail() const { return email; }
     std::string getPhoneNumber() const { return phoneNumber; }
     std::string getFullName() const;
+    bool operator == (const Student&);
 };
+
+
 
 #endif /* Student_hpp */

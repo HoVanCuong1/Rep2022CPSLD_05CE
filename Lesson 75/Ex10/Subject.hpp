@@ -29,6 +29,7 @@ public:
     std::string getName() const { return name; }
     int getCredit() const { return credit; }
     int getLesson() const { return lesson; }
+    bool operator == (const Subject&);
 };
 
 #endif /* Subject_hpp */

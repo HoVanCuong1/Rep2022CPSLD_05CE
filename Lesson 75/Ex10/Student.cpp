@@ -6,6 +6,7 @@
 //
 
 #include <iomanip>
+#include <cstring>
 #include "Student.hpp"
 using namespace std;
 
@@ -64,7 +65,8 @@ void Student::setPhoneNumber(std::string phone) {
 }
 
 ostream& operator << (ostream& os, const Student& student) {
-    os << setw(15) << student.id << setw(25) << student.getFullName() << setw(30) << student.email << setw(30) << student.phoneNumber << endl;
+    os << left << setw(15) << student.id << setw(25) << student.getFullName()
+        << setw(25) << student.email << setw(20) << student.phoneNumber << endl;
     return os;
 }
 
@@ -87,4 +89,8 @@ istream& operator >> (istream& is, Student& student) {
 string Student::getFullName() const {
     return (std::string(lastName) +
             " " + std::string(midName) + " " + std::string(firstName));
+}
+
+bool Student::operator == (const Student& other) {
+    return strcmp(id, other.id) == 0;
 }
