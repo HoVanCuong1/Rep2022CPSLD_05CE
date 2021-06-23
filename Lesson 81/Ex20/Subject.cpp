@@ -10,7 +10,7 @@
 #include "Subject.hpp"
 using namespace std;
 
-namespace Exercises11 {
+namespace Exercises20 {
     Subject::Subject(std::string id, std::string name, int lesson, int credit) :
         lesson(lesson), credit(credit) {
         setId(id);
@@ -49,11 +49,11 @@ namespace Exercises11 {
         return is;
     }
 
-    bool Subject::operator == (const Subject& other) {
+    const bool Subject::operator == (const Subject& other) const {
         return strcmp(id, other.id) == 0;
     }
 
-    bool Subject::operator > (const Subject& other) {
+    const bool Subject::operator > (const Subject& other) const {
         return strcmp(name, other.name) > 0;
     }
 }

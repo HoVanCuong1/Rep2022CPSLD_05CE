@@ -9,7 +9,7 @@
 #ifndef Student_hpp
 #define Student_hpp
 
-namespace Exercises11 {
+namespace Exercises20 {
     class Student {
         friend std::ostream& operator << (std::ostream&, const Student&);
         friend std::istream& operator >> (std::istream&, Student&);
@@ -37,8 +37,8 @@ namespace Exercises11 {
         std::string getEmail() const { return email; }
         std::string getPhoneNumber() const { return phoneNumber; }
         std::string getFullName() const;
-        bool operator == (const Student&);
-        bool operator > (const Student&);
+        const bool operator == (const Student&) const;
+        const bool operator > (const Student&) const;
     };
 }
 

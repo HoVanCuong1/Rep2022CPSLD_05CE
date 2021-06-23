@@ -18,7 +18,7 @@ using std::endl;
 using std::fixed;
 using std::setprecision;
 
-namespace Exercises11 {
+namespace Exercises20 {
     template<class T, class V> class Transcript;
     template<class T, class V> istream& operator >> (istream&, Transcript<T, V>&);
     template<class T, class V> ostream& operator << (ostream&, const Transcript<T, V>&);
@@ -63,6 +63,14 @@ namespace Exercises11 {
 
         void calculateGpa() {
             gpa = (scoreLevel1 + 2 * scoreLevel2 + 7 * scoreLevel3) / 10;
+        }
+
+        const bool operator > (const Transcript& other) const {
+            return gpa > other.gpa;
+        }
+
+        const bool operator < (const Transcript& other) const {
+            return gpa < other.gpa;
         }
     };
 

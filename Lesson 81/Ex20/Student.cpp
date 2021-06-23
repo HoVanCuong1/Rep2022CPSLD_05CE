@@ -10,7 +10,7 @@
 #include "Student.hpp"
 using namespace std;
 
-namespace Exercises11 {
+namespace Exercises20 {
     Student::Student(std::string id, std::string firstName, std::string lastName,
         std::string midName, std::string email, std::string phoneNumber) {
         setId(id);
@@ -90,11 +90,11 @@ namespace Exercises11 {
             " " + std::string(midName) + " " + std::string(firstName));
     }
 
-    bool Student::operator == (const Student& other) {
+    const bool Student::operator == (const Student& other) const {
         return strcmp(id, other.id) == 0;
     }
 
-    bool Student::operator > (const Student& other) {
+    const bool Student::operator > (const Student& other) const {
         return strcmp(firstName, other.firstName) > 0;
     }
 

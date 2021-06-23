@@ -8,7 +8,7 @@
 #ifndef Subject_hpp
 #define Subject_hpp
 #include <iostream>
-namespace Exercises11 {
+namespace Exercises20 {
     class Subject {
         friend std::ostream& operator << (std::ostream&, const Subject&);
         friend std::istream& operator >> (std::istream&, Subject&);
@@ -28,8 +28,8 @@ namespace Exercises11 {
         std::string getName() const { return name; }
         int getCredit() const { return credit; }
         int getLesson() const { return lesson; }
-        bool operator == (const Subject&);
-        bool operator > (const Subject&);
+        const bool operator == (const Subject&) const;
+        const bool operator > (const Subject&) const;
     };
 
 }
