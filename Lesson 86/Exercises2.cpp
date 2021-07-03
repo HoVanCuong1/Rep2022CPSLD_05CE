@@ -1,3 +1,9 @@
+/**
+ * @author Branium Academy
+ * @website braniumacademy.net
+ * @version 2021.06
+ *
+ */
 #include <iostream>
 #include <exception>
 #include <string>
