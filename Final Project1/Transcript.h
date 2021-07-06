@@ -24,11 +24,12 @@ class Transcript
 public:
 	Transcript();
 	Transcript(int id);
+	Transcript(const Student& st, const Subject& sj);
 	Transcript(int id, Student student, Subject subject, float gradeLevel1,
-		float gradeLevel2, float gradeLevel3, float gradeLevel4, float gpa, string rank);
+		float gradeLevel2, float gradeLevel3, float gradeLevel4, float gpa = 0, string rank = "");
 	void setId(int id);
-	void setStudent(Student student);
-	void setSubject(Subject subject);
+	void setStudent(const Student& student);
+	void setSubject(const Subject& subject);
 	void setRank(string rank);
 	void setGradeLevel1(float gl1);
 	void setGradeLevel2(float gl2);
@@ -47,4 +48,5 @@ public:
 	bool operator < (const Transcript&) const;
 	bool operator == (const Transcript&) const;
 	bool operator > (const Transcript&) const;
+	void calculateGPA();
 };

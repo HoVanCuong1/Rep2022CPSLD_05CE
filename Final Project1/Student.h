@@ -26,4 +26,3 @@ public:
 	bool operator == (const Student&) const;
 	bool operator > (const Student&) const;
 };
-

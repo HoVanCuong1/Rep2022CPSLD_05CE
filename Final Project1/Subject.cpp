@@ -7,6 +7,7 @@ istream& operator >> (istream& is, Subject& subject) {
 	is.getline(subject.name, 40);
 	cout << "So tin chi: ";
 	is >> subject.credit;
+	subject.setId(Subject::autoIncrementId++);
 	return is;
 }
 
@@ -67,7 +68,7 @@ void Subject::setAutoIncrementId(int autoId) {
 }
 
 bool Subject::operator < (const Subject& s) const {
-	return credit < s.credit;
+	return getName().compare(s.getName()) < 0;
 }
 
 bool Subject::operator == (const Subject& s) const {
@@ -75,5 +76,5 @@ bool Subject::operator == (const Subject& s) const {
 }
 
 bool Subject::operator > (const Subject& s) const {
-	return credit > s.credit;
+	return getName().compare(s.getName()) > 0;
 }

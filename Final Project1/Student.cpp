@@ -85,13 +85,13 @@ void Student::setSchoolYear(string schoolYear) {
 }
 
 bool Student::operator < (const Student& s) const {
-	return strcmp(studentId, s.studentId) < 0;
+	return getFirstName().compare(s.getFirstName()) < 0;
 }
 
 bool Student::operator == (const Student& s) const {
 	return strcmp(studentId, s.studentId) == 0;
 }
 
-bool Student::operator > (const Student& s) const{
-	return strcmp(studentId, s.studentId) > 0;
+bool Student::operator > (const Student& s) const {
+	return getFirstName().compare(s.getFirstName()) > 0;
 }
