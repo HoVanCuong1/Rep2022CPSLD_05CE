@@ -1,4 +1,9 @@
-﻿#include <iostream>
+﻿/**
+* @author Branium Academy
+* @version 2021.06
+* @website braniumacademy.net
+*/
+#include <iostream>
 #include <fstream>
 #include <algorithm>
 #include <vector>
@@ -6,6 +11,7 @@
 #include "Subject.h"
 #include "Transcript.h"
 using namespace std;
+using std::cout;
 
 template<class T> bool incrementComparator(const T& a, const T& b) {
 	return a < b;
@@ -15,7 +21,7 @@ template<class T> void sortASC(vector<T>& v) {
 	sort(v.begin(), v.end(), incrementComparator<T>);
 }
 
-template<class T> T* findById(const vector<T>& v, const T& target) {
+template<class T> T* findById(vector<T>& v, const T& target) {
 	for (auto i = v.begin(); i != v.end(); i++) {
 		if (*i == target) {
 			return &(*i);
@@ -49,7 +55,7 @@ template<class T> void writeToFile(const vector<T>& v, string fileName) {
 	ofstream ofs(fileName, ios::binary | ios::out);
 	if (ofs) {
 		for (auto it = v.cbegin(); it != v.cend(); it++) {
-			ofs.write(reinterpret_cast<const char*>(&(*it), sizeof(T));
+			ofs.write(reinterpret_cast<const char*>(&(*it)), sizeof(T));
 		}
 		ofs.close();
 	}
@@ -91,9 +97,10 @@ float findMaxGPA(const vector<Transcript>& v) {
 			maxGpa = e.getGPA();
 		}
 	}
+	return maxGpa;
 }
 // hàm sắp xếp tổng quát
-void sortTranscript(const vector<Transcript>& v,
+void sortTranscript(vector<Transcript>& v,
 	bool(*comparator)(const Transcript&, const Transcript&)) {
 	sort(v.begin(), v.end(), comparator);
 }
@@ -138,6 +145,10 @@ int main() {
 	vector<Student> students;
 	vector<Subject> subjects;
 	vector<Transcript> transcripts;
+	// load dữ liệu từ file
+	readFile(students, studentFile);
+	readFile(subjects, subjectFile);
+	readFile(transcripts, transcriptFile);
 	do {
 		cout << "================================= MENU =================================\n";
 		cout << "1. Nhap moi mot mon hoc.\n";
@@ -306,13 +317,13 @@ int main() {
 						break;
 					}
 					default:
-						cout << "Sai chuc nang. Vui long kiem tra lai.\n";
+						cout << "<== Sai chuc nang. Vui long kiem tra lai. ==>\n";
 						break;
 					}
 				} while (option != 0);
 			}
 			else {
-				cout << "Danh sach bang diem rong.\n";
+				cout << "<== Danh sach bang diem rong. ==>\n";
 			}
 			break;
 		}
@@ -360,7 +371,7 @@ int main() {
 							}
 						}
 						if (!isExisted) {
-							cout << "Khong co ket qua nao.\n";
+							cout << "<== Khong co ket qua nao. ==>\n";
 						}
 						break;
 					}
@@ -379,7 +390,7 @@ int main() {
 							}
 						}
 						if (!isExisted) {
-							cout << "Khong co ket qua nao.\n";
+							cout << "<== Khong co ket qua nao. ==>\n";
 						}
 						break;
 					}
@@ -403,13 +414,13 @@ int main() {
 						break;
 					}
 					default:
-						cout << "Sai chuc nang. Vui long kiem tra lai.\n";
+						cout << "<== Sai chuc nang. Vui long kiem tra lai. ==>\n";
 						break;
 					}
 				} while (option != 0);
 			}
 			else {
-				cout << "Danh sach bang diem rong.\n";
+				cout << "<== Danh sach bang diem rong. ==>\n";
 			}
 			break;
 		}
@@ -426,7 +437,7 @@ int main() {
 				}
 			}
 			else {
-				cout << "Danh sach bang diem rong.\n";
+				cout << "<== Danh sach bang diem rong. ==>\n";
 			}
 			break;
 		}
@@ -450,11 +461,11 @@ int main() {
 					}
 				}
 				if (!isFound) {
-					cout << "Khong tim thay bang diem. Vui long kiem tra lai!";
+					cout << "<== Khong tim thay bang diem. Vui long kiem tra lai! ==>";
 				}
 			}
 			else {
-				cout << "Danh sach bang diem rong.\n";
+				cout << "<== Danh sach bang diem rong. ==>\n";
 			}
 			break;
 		case 14:
@@ -472,11 +483,11 @@ int main() {
 					}
 				}
 				if (!isFound) {
-					cout << "Khong tim thay bang diem. Vui long kiem tra lai!";
+					cout << "<== Khong tim thay bang diem. Vui long kiem tra lai! ==>";
 				}
 			}
 			else {
-				cout << "Danh sach bang diem rong.\n";
+				cout << "<== Danh sach bang diem rong. ==>\n";
 			}
 			break;
 		case 15:
@@ -484,23 +495,23 @@ int main() {
 				writeToFile(students, studentFile);
 			}
 			else {
-				cout << "Danh sach sinh vien rong.\n";
+				cout << "<== Danh sach sinh vien rong. ==>\n";
 			}
 			if (subjects.size() > 0) {
 				writeToFile(subjects, subjectFile);
 			}
 			else {
-				cout << "Danh sach mon hoc rong.\n";
+				cout << "<== Danh sach mon hoc rong. ==>\n";
 			}
 			if (transcripts.size() > 0) {
 				writeToFile(transcripts, transcriptFile);
 			}
 			else {
-				cout << "Danh sach bang diem rong.\n";
+				cout << "<== Danh sach bang diem rong. ==>\n";
 			}
 			break;
 		default:
-			cout << "Sai chuc nang, vui long chon lai!\n";
+			cout << "<== Sai chuc nang, vui long chon lai! ==>\n";
 			break;
 		}
 	} while (choice != 0);
