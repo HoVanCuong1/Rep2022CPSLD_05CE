@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <fstream>
 #include <algorithm>
 #include <vector>
 #include "Student.h"
@@ -43,15 +44,37 @@ void showTranscriptTableHeader() {
 		<< setw(10) << "Diem he 3" << setw(10) << "Diem he 4"
 		<< setw(10) << "Diem TB" << setw(10) << "Xep loai" << endl;
 }
-
+// hàm template ghi dữ liệu ra file
 template<class T> void writeToFile(const vector<T>& v, string fileName) {
-	
+	ofstream ofs(fileName, ios::binary | ios::out);
+	if (ofs) {
+		for (auto it = v.cbegin(); it != v.cend(); it++) {
+			ofs.write(reinterpret_cast<const char*>(&(*it), sizeof(T));
+		}
+		ofs.close();
+	}
+	else {
+		cout << "Loi khong mo duoc file. Vui long kiem tra lai.\n";
+	}
 }
-
+// hàm template đọc dữ liệu từ file
 template<class T> void readFile(vector<T>& v, string fileName) {
-
+	ifstream ifs(fileName, ios::binary | ios::in);
+	if (ifs) {
+		while (!ifs.eof()) {
+			T t;
+			ifs.read(reinterpret_cast<char*>(&t), sizeof(T));
+			if (!ifs.eof()) {
+				v.push_back(t);
+			}
+		}
+		ifs.close();
+	}
+	else {
+		cout << "Loi khong mo duoc file. Vui long kiem tra lai.\n";
+	}
 }
-
+// hàm kiểm tra xem môn học x của sinh viên y được nhập vào danh sách bảng điểm chưa
 bool checkExisted(const vector<Transcript>& v, const Transcript& tran) {
 	for (auto e : v) {
 		if (e == tran) {
@@ -59,6 +82,52 @@ bool checkExisted(const vector<Transcript>& v, const Transcript& tran) {
 		}
 	}
 	return false;
+}
+// hàm tìm điểm trung bình lớn nhất trong danh sách bảng điểm
+float findMaxGPA(const vector<Transcript>& v) {
+	float maxGpa = v[0].getGPA();
+	for (auto e : v) {
+		if (e.getGPA() > maxGpa) {
+			maxGpa = e.getGPA();
+		}
+	}
+}
+// hàm sắp xếp tổng quát
+void sortTranscript(const vector<Transcript>& v,
+	bool(*comparator)(const Transcript&, const Transcript&)) {
+	sort(v.begin(), v.end(), comparator);
+}
+
+bool gpaDESCOrder(const Transcript& a, const Transcript& b) {
+	bool gpaEquals = a.getGPA() == b.getGPA();
+	bool firstNameEquals = a.getStudent().getFirstName() == b.getStudent().getFirstName();
+	if (gpaEquals == true) {
+		if (firstNameEquals) {
+			return a.getStudent().getLastName() < b.getStudent().getLastName();
+		}
+		else {
+			return a.getStudent().getFirstName() < b.getStudent().getFirstName();
+		}
+	}
+	else {
+		return a.getGPA() > b.getGPA();
+	}
+}
+
+bool subjectNameOrder(const Transcript& a, const Transcript& b) {
+	return a.getSubject().getName() < b.getSubject().getName();
+}
+
+bool studentIdOrder(const Transcript& a, const Transcript& b) {
+	return a.getStudent().getId() < b.getStudent().getId();
+}
+
+bool subjectIdOrder(const Transcript& a, const Transcript& b) {
+	return a.getSubject().getId() < b.getSubject().getId();
+}
+
+bool rankOrder(const Transcript& a, const Transcript& b) {
+	return a.getGPA() > b.getGPA();
 }
 
 int main() {
@@ -195,22 +264,240 @@ int main() {
 			}
 			break;
 		case 10:
-
+		{
+			if (transcripts.size() > 0) {
+				int option;
+				do {
+					cout << "<== Lua chon sap xep ==>\n";
+					cout << "1. Sap xep theo thu tu giam dan diem tong ket.\n";
+					cout << "2. Sap xep theo ten mon hoc a-z.\n";
+					cout << "3. Sap xep theo ma sinh vien tang dan.\n";
+					cout << "4. Sap xep theo ma mon hoc tang dan.\n";
+					cout << "5. Sap xep theo xep loai tu A+ -> F.\n";
+					cout << "0. Thoat chuc nang nay.\n";
+					cout << "Xin moi chon: ";
+					cin >> option;
+					switch (option)
+					{
+					case 0:
+						break;
+					case 1:
+					{
+						sortTranscript(transcripts, gpaDESCOrder);
+						break;
+					}
+					case 2:
+					{
+						sortTranscript(transcripts, subjectNameOrder);
+						break;
+					}
+					case 3:
+					{
+						sortTranscript(transcripts, studentIdOrder);
+						break;
+					}
+					case 4:
+					{
+						sortTranscript(transcripts, subjectIdOrder);
+						break;
+					}
+					case 5: {
+						sortTranscript(transcripts, rankOrder);
+						break;
+					}
+					default:
+						cout << "Sai chuc nang. Vui long kiem tra lai.\n";
+						break;
+					}
+				} while (option != 0);
+			}
+			else {
+				cout << "Danh sach bang diem rong.\n";
+			}
 			break;
+		}
 		case 11:
-
+		{
+			if (transcripts.size() > 0) {
+				int option;
+				do {
+					cout << "<== Lua chon tim kiem ==>\n";
+					cout << "1. Tim sinh vien co diem GPA cao nhat.\n";
+					cout << "2. Tim sinh vien co diem GPA bang x.\n";
+					cout << "3. Tim sinh vien co xep loai y.\n";
+					cout << "4. Tim sinh vien co ten x nhap vao tu ban phim.\n";
+					cout << "0. Thoat chuc nang nay.\n";
+					cout << "Xin moi chon: ";
+					cin >> option;
+					switch (option)
+					{
+					case 0:
+						break;
+					case 1:
+					{
+						float maxGpa = findMaxGPA(transcripts);
+						showTranscriptTableHeader();
+						for (auto e : transcripts)
+						{
+							if (e.getGPA() == maxGpa) {
+								cout << e;
+							}
+						}
+						break;
+					}
+					case 2:
+					{
+						float gpa;
+						cout << "Nhap diem trung binh can tim: ";
+						cin >> gpa;
+						bool isExisted = false;
+						showTranscriptTableHeader();
+						for (auto e : transcripts)
+						{
+							if (e.getGPA() == gpa) {
+								cout << e;
+								isExisted = true;
+							}
+						}
+						if (!isExisted) {
+							cout << "Khong co ket qua nao.\n";
+						}
+						break;
+					}
+					case 3:
+					{
+						cout << "Nhap xep loai: ";
+						string rank;
+						cin >> rank;
+						bool isExisted = false;
+						showTranscriptTableHeader();
+						for (auto e : transcripts)
+						{
+							if (e.getRank().compare(rank) == 0) {
+								cout << e;
+								isExisted = true;
+							}
+						}
+						if (!isExisted) {
+							cout << "Khong co ket qua nao.\n";
+						}
+						break;
+					}
+					case 4:
+					{
+						cout << "Nhap ten can tim: ";
+						string name;
+						cin >> name;
+						bool isExisted = false;
+						showTranscriptTableHeader();
+						for (auto e : transcripts)
+						{
+							if (e.getStudent().getFirstName().compare(name) == 0) {
+								cout << e;
+								isExisted = true;
+							}
+						}
+						if (!isExisted) {
+							cout << "Khong co ket qua nao.\n";
+						}
+						break;
+					}
+					default:
+						cout << "Sai chuc nang. Vui long kiem tra lai.\n";
+						break;
+					}
+				} while (option != 0);
+			}
+			else {
+				cout << "Danh sach bang diem rong.\n";
+			}
 			break;
+		}
 		case 12:
-
+		{
+			if (transcripts.size() > 0) {
+				cout << "Nhap ten mon hoc: ";
+				string subjectName;
+				getline(cin, subjectName);
+				for (auto e : transcripts) {
+					if (e.getSubject().getName().compare(subjectName) == 0) {
+						cout << e;
+					}
+				}
+			}
+			else {
+				cout << "Danh sach bang diem rong.\n";
+			}
 			break;
+		}
 		case 13:
-
+			if (transcripts.size() > 0) {
+				int transId;
+				bool isFound = false;
+				cout << "Nhap ma bang diem: ";
+				cin >> transId;
+				for (size_t i = 0; i < transcripts.size(); i++) {
+					if (transcripts[i].getId() == transId) {
+						cout << "Nhap diem he so 1, 2, 3, 4: ";
+						float grade1, grade2, grade3, grade4;
+						cin >> grade1 >> grade2 >> grade3 >> grade4;
+						transcripts[i].setGradeLevel1(grade1);
+						transcripts[i].setGradeLevel2(grade2);
+						transcripts[i].setGradeLevel3(grade3);
+						transcripts[i].setGradeLevel4(grade4);
+						isFound = true;
+						break;
+					}
+				}
+				if (!isFound) {
+					cout << "Khong tim thay bang diem. Vui long kiem tra lai!";
+				}
+			}
+			else {
+				cout << "Danh sach bang diem rong.\n";
+			}
 			break;
 		case 14:
-
+			if (transcripts.size() > 0) {
+				int transId;
+				bool isFound = false;
+				cout << "Nhap ma bang diem: ";
+				cin >> transId;
+				for (auto it = transcripts.begin(); it != transcripts.end(); it++) {
+					if (it->getId() == transId) {
+						transcripts.erase(it);
+						isFound = true;
+						cout << "<== Xoa thanh cong ==>\n";
+						break;
+					}
+				}
+				if (!isFound) {
+					cout << "Khong tim thay bang diem. Vui long kiem tra lai!";
+				}
+			}
+			else {
+				cout << "Danh sach bang diem rong.\n";
+			}
 			break;
 		case 15:
-
+			if (students.size() > 0) {
+				writeToFile(students, studentFile);
+			}
+			else {
+				cout << "Danh sach sinh vien rong.\n";
+			}
+			if (subjects.size() > 0) {
+				writeToFile(subjects, subjectFile);
+			}
+			else {
+				cout << "Danh sach mon hoc rong.\n";
+			}
+			if (transcripts.size() > 0) {
+				writeToFile(transcripts, transcriptFile);
+			}
+			else {
+				cout << "Danh sach bang diem rong.\n";
+			}
 			break;
 		default:
 			cout << "Sai chuc nang, vui long chon lai!\n";
