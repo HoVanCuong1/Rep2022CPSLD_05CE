@@ -28,7 +28,6 @@ int main() {
         if(exp >= 1) {
             cout << i;
             (exp > 1) ? cout << "^" << exp : cout << "";
-            cout << ((n > 1) ? "x" : "");
         }
         cout << endl;
     }
