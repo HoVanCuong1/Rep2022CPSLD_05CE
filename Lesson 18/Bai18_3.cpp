@@ -13,7 +13,7 @@ int main() {
         int upperBound = sqrt(b);
         int counter = 0;
         for (int i = lowerBound; i <= upperBound; i++) {
-            if(counter < n) {
+            if(counter < n && i * i >= a) {
                 counter++;
                 cout << (i * i) << " ";
             } else {
