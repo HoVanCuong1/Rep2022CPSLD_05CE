@@ -1,7 +1,6 @@
 #pragma once
 #include "Student.h"
-class GraduatedStudent :
-    public Student
+class GraduatedStudent : public Student
 {
     int graduationYear;
     string graduationGrading;

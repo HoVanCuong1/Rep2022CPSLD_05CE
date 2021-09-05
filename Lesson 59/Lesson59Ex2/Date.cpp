@@ -6,9 +6,9 @@ Date::Date() {
 	year = 1900;
 }
 Date::Date(int day, int month, int year) {
-	setDay(day);
 	setMonth(month);
 	setYear(year);
+	setDay(day);
 }
 
 void Date::setDay(int day) {

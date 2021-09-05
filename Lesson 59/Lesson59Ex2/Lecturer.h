@@ -1,7 +1,7 @@
 #pragma once
 #include "Person.h"
 
-class Lecturer : Person
+class Lecturer : public Person
 {
 	string lecturerId;
 	string degree;

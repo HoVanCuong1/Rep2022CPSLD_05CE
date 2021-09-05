@@ -3,10 +3,12 @@
 Address::Address() {
 	district = "";
 	city = "";
-	nation = "";
+	nation = "Vietnam";
 }
 
 Address::Address(string city) {
+	district = "";
+	nation = "Vietnam";
 	setCity(city);
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "Person.h"
 
-class Student : Person
+class Student : public Person
 {
 	string studentId;
 	string major;

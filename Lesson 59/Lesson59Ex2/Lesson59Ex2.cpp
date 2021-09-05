@@ -39,8 +39,6 @@ GraduatedStudent createGraduatedStudent() {
 	s.setFullName(fullName);
 	Date date;
 	Address address;
-	s.setDateOfBirth(date);
-	s.setAddress(address);
 	return s;
 }
 
@@ -73,8 +71,6 @@ UnderGraduatedStudent createUnderGraduatedStudent() {
 	s.setNumOfSubjectStudying(subjectStudying);
 	Date date;
 	Address address;
-	s.setDateOfBirth(date);
-	s.setAddress(address);
 	return s;
 }
 
@@ -257,8 +253,7 @@ int main()
 						getline(cin, district);
 						cout << "Thanh pho: ";
 						getline(cin, city);
-						graduatedStudents[i].getAddress().setCity(city);
-						graduatedStudents[i].getAddress().setDistrict(district);
+						graduatedStudents[i].setAddress(Address{district, city, "Vietnam"});
 						searchIndex = i;
 					}
 				}
@@ -282,9 +277,8 @@ int main()
 					if (undergraduatedStudents[i].getStudentId().compare(studentId) == 0) {
 						cout << "Nhap ngay, thang, nam sinh cach nhau boi dau cach: ";
 						cin >> day >> month >> year;
-						undergraduatedStudents[i].getDateOfBirth().setMonth(month);
-						undergraduatedStudents[i].getDateOfBirth().setYear(year);
-						undergraduatedStudents[i].getDateOfBirth().setDay(day);
+						Date dob(day, month, year);
+						undergraduatedStudents[i].setDateOfBirth(dob);
 						searchIndex = i;
 					}
 				}

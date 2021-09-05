@@ -2,7 +2,7 @@
 
 Student::Student() {
 	studentId = "";
-	major = "";
+	major = "CNTT";
 }
 
 Student::Student(string studentId) {

@@ -1,7 +1,6 @@
 #pragma once
 #include "Student.h"
-class UnderGraduatedStudent :
-    public Student
+class UnderGraduatedStudent : public Student
 {
     int numOfSubjectStudying;
     float gpaScore;

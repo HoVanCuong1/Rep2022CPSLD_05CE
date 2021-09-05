@@ -14,7 +14,7 @@ class Person
 	Date dateOfBirth;
 	FullName fullName;
 public:
-	Person() {}
+	Person();
 	Person(string id) { this->identity = id; }
 	void showInfo();
 	void setIdentity(string id) { this->identity = id; }
