@@ -1,0 +1,4 @@
+Test 1:
+Xin. Chao cac ban.
+Test 2:
+Hi there! Welcome to C++ course of Branium Academy. 

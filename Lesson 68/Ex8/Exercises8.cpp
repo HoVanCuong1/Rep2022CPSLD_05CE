@@ -51,7 +51,7 @@ int main()
             int n = 0;
             char input[500];
             ifs.getline(input, 500);
-            ofs << "Test " << counter++ << endl;
+            ofs << "Test " << counter++ << ":"  << endl;
             char words[500][20];
             splitWords(words, input, n);
             saveData(words, n, ofs);
