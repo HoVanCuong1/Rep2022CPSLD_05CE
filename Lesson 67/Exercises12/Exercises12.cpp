@@ -16,6 +16,7 @@ int main() {
 			auto value = stoull(str, nullptr, 16);
 			cout << "Test " << testCount++ << ": " << value << endl;
 		}
+		ifs.close();
 	}
 	else {
 		cout << "Khong mo duoc file. Vui long kiem tra lai.\n";

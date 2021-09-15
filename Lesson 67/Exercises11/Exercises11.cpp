@@ -16,6 +16,7 @@ int main() {
 			int value = stoi(str, nullptr, 2);
 			cout << "Test " << testCount++ << ": " << value << endl;
 		}
+		ifs.close();
 	}
 	else {
 		cout << "Khong mo duoc file. Vui long kiem tra lai.\n";
