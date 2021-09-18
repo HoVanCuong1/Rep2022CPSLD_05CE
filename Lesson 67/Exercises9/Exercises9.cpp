@@ -55,14 +55,13 @@ void removeHead(char* input) {
     {
         if (input[i] == '\t' || input[i] == ' ') {
             pos = i;
-        }
-        if (input[i] != ' ' && input[i] != '\t') {
+        } else {
             break;
         }
     }
-    for (int i = 0; i <= len - pos; i++)
+    for (int i = 0; i < len - pos; i++)
     {
-        input[i] = input[i + pos];
+        input[i] = input[i + pos + 1];
     }
 }
 
