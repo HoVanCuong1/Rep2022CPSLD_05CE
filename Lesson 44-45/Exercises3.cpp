@@ -1,18 +1,21 @@
 #include <iostream>
-#include <fstream>
-#include <cstdlib>
+#include <string>
+#include <cstring>
 using namespace std;
 
-void splitWords(char words[500][20], char* input, int& n) {
+void splitWords(string* words, string input, int& n) {
+	char* cstr = new char[input.length() + 1];
+	std::strcpy(cstr, input.c_str());
 	const char* delim = "\t.?,:;! ";
-	char* p = strtok(input, delim);
+	char* p = strtok(cstr, delim);
 	while (p != nullptr) {
-		strcpy(words[n++], p);
+		string word(p);
+		words[n++] = word;
 		p = strtok(NULL, delim);
 	}
 }
 
-void saveData(char words[500][20], int n) {
+void printData(string* words, int n) {
 	for (int i = 0; i < n; i++)
 	{
 		cout << words[i] << " ";
@@ -20,18 +23,18 @@ void saveData(char words[500][20], int n) {
 	cout << endl;
 }
 
-void doUppercase(char words[500][20], int n) {
+void doUppercase(string* words, int n) {
 	for (int i = 0; i < n; i++)
 	{
 		words[i][0] = toupper(words[i][0]);
 	}
 }
 
-void sort(char words[500][20], int n) {
+void sort(string* words, int n) {
 	for (int i = 0; i < n; i++) {
 		for (int j = i + 1; j < n; j++)
 		{
-			if (strcmp(words[i], words[j]) < 0) {
+			if (words[i].compare(words[j]) < 0) {
 				swap(words[i], words[j]);
 			}
 		}
@@ -46,15 +49,15 @@ int main()
 	cin.ignore();
 	while (t--) {
 		int n = 0;
-		char input[500];
-		cin.getline(input, 500);
+		string input;
+		getline(cin, input);
 		cout << "Test " << counter++ << ":" << endl;
-		char words[500][20];
+		string* words = new string[input.length()];
 		splitWords(words, input, n);
-		saveData(words, n);
+		printData(words, n);
 		doUppercase(words, n);
-		saveData(words, n);
+		printData(words, n);
 		sort(words, n);
-		saveData(words, n);
+		printData(words, n);
 	}
 }
