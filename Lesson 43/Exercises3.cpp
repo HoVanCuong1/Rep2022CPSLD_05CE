@@ -13,6 +13,7 @@ void removeTail(char* input) {
 	int len = strlen(input);
 	while (input[len - 1] == '\t' || input[len - 1] == ' ') {
 		input[len - 1] = '\0';
+		len = strlen(input);
 	}
 }
 
