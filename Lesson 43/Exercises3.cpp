@@ -49,7 +49,7 @@ void removeInside(char* input) {
 }
 
 void removeHead(char* input) {
-	int pos = 0;
+	int pos = -1;
 	int len = strlen(input);
 	for (int i = 0; i < len; i++)
 	{
@@ -59,6 +59,9 @@ void removeHead(char* input) {
 		else {
 			break;
 		}
+	}
+	if (pos == -1) {
+		return;
 	}
 	for (int i = 0; i < len - pos; i++)
 	{
@@ -83,7 +86,7 @@ void addDotToTheEnd(char* input) {
 
 void addSpace(char* input) {
 	int len = strlen(input);
-	for (int i = 1; i < len; i++)
+	for (int i = 1; i < len - 1; i++)
 	{
 		if ((input[i] == ',' || input[i] == '.' || input[i] == '!'
 			|| input[i] == '?' || input[i] == ';' || input[i] == ':')
