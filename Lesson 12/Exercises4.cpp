@@ -1,11 +1,10 @@
 /**
  * @author Branium Academy
- * @website braniumacademy.net
- * @ version 2021.02
+ * @see braniumacademy.net
+ * @version 2021.12
  */ 
 
 #include <iostream>
-
 using namespace std;
 
 int main() {
@@ -18,6 +17,4 @@ int main() {
     (a == b && b == c) ? cout << "Khong co gia tri max"
     : cout << "Gia tri max = " << max;
     cout << endl << endl;
-    
-    return 0;
 }

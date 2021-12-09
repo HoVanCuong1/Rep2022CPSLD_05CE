@@ -1,11 +1,10 @@
 /**
  * @author Branium Academy
- * @website braniumacademy.net
- * @ version 2021.02
+ * @see braniumacademy.net
+ * @version 2021.12
  */ 
 
 #include <iostream>
-
 using namespace std;
 
 int main() {
@@ -30,6 +29,4 @@ int main() {
                << "x2 = " << (-b + sqrt(delta)) / (2 * a);
     }
     cout << endl << endl;
-    
-    return 0;
 }

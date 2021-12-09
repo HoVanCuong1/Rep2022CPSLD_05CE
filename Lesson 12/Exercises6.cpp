@@ -1,11 +1,10 @@
 /**
  * @author Branium Academy
- * @website braniumacademy.net
- * @ version 2021.02
+ * @see braniumacademy.net
+ * @version 2021.02
  */ 
 
 #include <iostream>
-
 using namespace std;
 
 int main() {
@@ -17,6 +16,4 @@ int main() {
     : (a == 0 && b != 0) ? cout << "Phuong trinh khong co nghiem"
     : cout << "Nghiem x = " << -b / a;
     cout << endl << endl;
-    
-    return 0;
 }

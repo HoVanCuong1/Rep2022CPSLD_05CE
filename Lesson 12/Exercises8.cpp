@@ -1,11 +1,10 @@
 /**
  * @author Branium Academy
- * @website braniumacademy.net
- * @ version 2021.02
+ * @see braniumacademy.net
+ * @version 2021.12
  */ 
 
 #include <iostream>
-
 using namespace std;
 
 int main() {
@@ -15,5 +14,4 @@ int main() {
     
     (a + b > c && b + c > a && c + a > b) ? cout << "Co" : cout << "Khong";
     cout << endl << endl;
-    
 }

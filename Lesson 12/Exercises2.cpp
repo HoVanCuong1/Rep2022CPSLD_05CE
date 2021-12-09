@@ -1,11 +1,10 @@
 /**
  * @author Branium Academy
- * @website braniumacademy.net
- * @ version 2021.02
+ * @see braniumacademy.net
+ * @version 2021.02
  */ 
 
 #include <iostream>
-
 using namespace std;
 
 int main() {
@@ -16,6 +15,4 @@ int main() {
              : (n > 0) ? cout << n << " la so duong"
              : cout << n << " la so am";
     cout << endl << endl;
-    
-    return 0;
 }

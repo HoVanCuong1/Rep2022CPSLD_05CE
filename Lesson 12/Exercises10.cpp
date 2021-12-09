@@ -1,7 +1,7 @@
 /**
  * @author Branium Academy
- * @website braniumacademy.net
- * @ version 2021.02
+ * @see braniumacademy.net
+ * @version 2021.12
  */ 
 
 #include <iostream>
@@ -19,5 +19,4 @@ int main() {
     : gpa >= 4 ? cout << "D"
     : cout << "F";
     cout << endl << endl;
-    
 }
