@@ -43,7 +43,7 @@ void derivative(int arr[], int der[], int n) {
 
 double px(int arr[], int n, double x) {
 	double result = 0;
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i <= n; i++) {
 		result += arr[i] * pow(x, i);
 	}
 	return result;
@@ -53,6 +53,9 @@ void showPolynomial(int arr[], int n) {
 	for (int i = n; i >= 0; i--) {
 		if (arr[i] != 0 && arr[i] != 1) {
 			cout << arr[i];
+		}
+		else if (i == 0 && arr[i] == 1) {
+			cout << '1';
 		}
 		if (arr[i] != 0) {
 			if (i > 0) {
