@@ -1,11 +1,10 @@
 #include <iostream>
-
 using namespace std;
 
 /**
- * @author braniumacademy
- * @version 2021.02
- * @website braniumacademy.net
+ * @author Branium Academy
+ * @version 2022.02.16
+ * @see https://braniumacademy.net
  */ 
 
 #define PI 3.14
