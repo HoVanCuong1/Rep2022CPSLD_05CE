@@ -1,8 +1,13 @@
+/**
+ * @author Branium Academy
+ * @version 2022.02.16
+ * @see https://braniumacademy.net
+ */
+
 // vẽ hình tim kích thước rộng x cao = 7 x 6
 // cách 1: xét vị trí các dấu cách(thực hiện ở bản Bai18_11v1)
 // cách 2: xét vị trí các dấu * (thực hiện trong bài này Bai18_11v2)
 #include <iostream>
-
 using namespace::std;
 
 int main() {
