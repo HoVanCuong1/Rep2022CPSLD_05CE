@@ -1,12 +1,12 @@
+/**
+ * @author Branium Academy
+ * @version 2022.02.16
+ * @see https://braniumacademy.net
+ */
+
 #include <iostream>
 #include "Bai22_5.h"
 using namespace std;
-
-/**
- * @author Branium Academy
- * @website braniumacademy.net
- * @version 2021.2
- */
 
 int main() {
     int a = getAnIntegerNumber();

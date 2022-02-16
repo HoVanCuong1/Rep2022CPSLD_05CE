@@ -1,12 +1,11 @@
-#include <iostream>
-
-using namespace::std;
-
 /**
  * @author Branium Academy
- * @website braniumacademy.net
- * @version 2021.2
+ * @version 2022.02.16
+ * @see https://braniumacademy.net
  */
+
+#include <iostream>
+using namespace::std;
 
 // khai báo nguyên mẫu hàm:
 double add(double a, double b); // cộng hai số a, b
