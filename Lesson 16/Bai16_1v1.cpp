@@ -1,8 +1,13 @@
+/**
+ * @author Branium Academy
+ * @version 2022.02.16
+ * @see https://braniumacademy.net
+ */
+
 // cách 1: trừ số to cho số nhỏ đến khi nào hai số bằng nhau
 // ta có được ước chung lớn nhất. BCNN bằng tích hai số đầu chia UCLN
 
 #include <iostream>
-
 using namespace::std;
 
 int main() {

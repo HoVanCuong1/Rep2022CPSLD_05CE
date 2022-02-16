@@ -1,11 +1,14 @@
+/**
+ * @author Branium Academy
+ * @version 2022.02.16
+ * @see https://braniumacademy.net
+ */
+
 // Nhập vào lựa chọn từ 1 - 12 và xuất ra tên tháng trong năm
 // tương ứng. Nhập 0 sẽ thoát chương trình
 #include <iostream>
-
 using namespace::std;
-/*
- * @author Branium Academy
-*/
+
 int main() {
     int choice; // lưu các lựa chọn
     do {

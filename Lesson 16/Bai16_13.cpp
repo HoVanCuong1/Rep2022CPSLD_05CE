@@ -1,11 +1,14 @@
+/**
+ * @author Branium Academy
+ * @version 2022.02.16
+ * @see https://braniumacademy.net
+ */
+
 // Nhập vào lựa chọn tiếp tục hoặc thoát. Nếu tiếp tục thì nhập
 // vào ngày sinh, tháng sinh và hiển thị ra cung hoàng đạo tương ứng
 #include <iostream>
-
 using namespace::std;
-/*
- * @author Branium Academy
-*/
+
 int main() {
     int choice; // lưu các lựa chọn
     do {

@@ -1,9 +1,14 @@
+/**
+ * @author Branium Academy
+ * @version 2022.02.16
+ * @see https://braniumacademy.net
+ */
+
 // cách 2: sử dụng thuật toán Euclid, chia lấy dư số lớn hơn cho số nhỏ hơn đến khi nào phần dư
 // bằng 0 thì dừng. Lúc đó ta có UCLN là a với giả định a > b.
 // ta có được ước chung lớn nhất. BCNN bằng tích hai số đầu chia UCLN
 
 #include <iostream>
-
 using namespace::std;
 
 int main() {
