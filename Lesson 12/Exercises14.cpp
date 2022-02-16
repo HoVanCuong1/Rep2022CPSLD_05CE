@@ -1,8 +1,8 @@
 /**
  * @author Branium Academy
- * @see braniumacademy.net
- * @version 2021.12
- */
+ * @version 2022.02.16
+ * @see https://braniumacademy.net
+ */ 
 
 #include<iostream>
 using namespace std;
