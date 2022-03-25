@@ -1,35 +1,32 @@
 /**
  * @author Branium Academy
- * @website braniumacademy.net
- * @version 2021.04
+ * @see braniumacademy.net
+ * @version 2022.03.25
  */
 
 #include <iostream>
 #include <string>
-
 using namespace std;
 #define SIZE 255
 
-int countOccurentOf(const char arr[], char x);
-void firstOccurentOf(const char arr[], int& min, int& max);
+// khai báo nguyên mẫu hàm
+int countOccurrentOf(const char arr[], char x);
+void firstOccurrentOf(const char arr[], int& min, int& max);
 
-int main()
-{
-	int min, max;
+int main() {
+	int min, max; 
 	char arr[SIZE];
 	cin.getline(arr, SIZE);
-	firstOccurentOf(arr, min, max);
-	if (max == min) {
-		cout << max << endl;
+	firstOccurrentOf(arr, min, max);
+	if (min == max) {
+		cout << min << endl;
 	}
 	else {
 		cout << max << " " << min << endl;
 	}
-
-	return 0;
 }
-
-int countOccurentOf(const char arr[], char x) {
+// hàm đếm số lần xuất hiện của kí tự x
+int countOccurrentOf(const char arr[], char x) {
 	int length = strlen(arr);
 	int countX = 0;
 	for (int i = 0; i < length; i++)
@@ -40,29 +37,29 @@ int countOccurentOf(const char arr[], char x) {
 	}
 	return countX;
 }
-
-void firstOccurentOf(const char arr[], int& min, int& max) {
+// xét số lần xuất hiện của kí tự x đầu tiên trong loạt kí tự x
+void firstOccurrentOf(const char arr[], int& min, int& max) {
 	bool isExisted(const char[], int, char);
 	int n = strlen(arr);
-	// khoi tao
-	min = max = countOccurentOf(arr, arr[0]);
+	min = max = countOccurrentOf(arr, arr[0]);
 	for (int i = 0; i < n; i++)
 	{
 		if (!isExisted(arr, i, arr[i])) {
-			int occurent = countOccurentOf(arr, arr[i]);
-			if (occurent > max) {
-				max = occurent;
+			int occurrent = countOccurrentOf(arr, arr[i]);
+			if (min > occurrent) {
+				min = occurrent;
 			}
-			if (min > occurent) {
-				min = occurent;
+			if (max < occurrent) {
+				max = occurrent;
 			}
-			cout << "'" << arr[i] << "' " << occurent << endl;
+			cout << "'" << arr[i] << "' " << occurrent << endl;
 		}
 	}
 }
 
-bool isExisted(const char arr[], int n, char x) {
-	for (int i = 0; i < n; i++)
+// hàm kiểm tra x đã xuất hiện trước vị pos trong mảng arr chưa
+bool isExisted(const char arr[], int pos, char x) {
+	for (int i = 0; i < pos; i++)
 	{
 		if (arr[i] == x) {
 			return true;
