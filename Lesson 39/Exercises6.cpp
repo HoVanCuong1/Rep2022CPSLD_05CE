@@ -1,68 +1,73 @@
+/**
+* @author Branium Academy
+* @version 2022.04.20
+* @see https://braniumacademy.net
+*/
+
 #include <iostream>
 #include <functional>
-
 using namespace std;
-#define SIZE 100
+#define SIZE 500
 
-void getArrayElements(int* const arr, int& n) {
-    cout << "Nhap so phan tu mang: ";
-    cin >> n;
-    if (n > 0) {
-        for (int i = 0; i < n; i++) {
-            cin >> *(arr + i);
-        }
-    }
-    else {
-        cout << "Nhap so phan tu mang: " << endl;
-    }
+// hàm nhập các phần tử mảng
+void getArrayElements(int* arr, int& size) {
+	cout << "Nhap so phan tu cua mang: ";
+	cin >> size;
+	for (int i = 0; i < size; i++) {
+		cin >> *(arr + i);
+	}
 }
 
-void commonElements(const int* const arr1, const int m, const int* const arr2, const int n) {
-    bool isExisted(const int* const, const int, const int);
-    for (int i = 0; i < m; i++) {
-        if (!isExisted(arr1, i, *(arr1 + i)) && isExisted(arr2, n, *(arr1 + i))) {
-            cout << *(arr1 + i) << " ";
-        }
-    }
-    cout << endl;
+// hàm tìm các phần tử chung của hai mảng
+void commonElements(int* arr1, int* arr2, int size1, int size2) {
+	bool isExisted(int*, int, int);
+	for (int i = 0; i < size1; i++) {
+		if (isExisted(arr2, size2, *(arr1 + i))) {
+			cout << *(arr1 + i) << " ";
+		}
+	}
 }
 
-void existInFirstArrayOnly(const int* const arr1, const int m, const int* const arr2, const int n) {
-    bool isExisted(const int* const, const int, const int);
-    for (int i = 0; i < m; i++) {
-        if (!isExisted(arr1, i, *(arr1 + i)) && !isExisted(arr2, n, *(arr1 + i))) {
-            cout << *(arr1 + i) << " ";
-        }
-    }
-    cout << endl;
+// tìm phần tử riêng của mảng thứ nhất
+void privateElement(int* arr1, int* arr2, int size1, int size2) {
+	bool isExisted(int*, int, int);
+	for (int i = 0; i < size1; i++) {
+		if (!isExisted(arr2, size2, *(arr1 + i))) {
+			cout << *(arr1 + i) << " ";
+		}
+	}
 }
 
-bool isExisted(const int* const arr, const int size, const int x) {
-    for (int i = 0; i < size; i++) {
-        if (*(arr + i) == x) {
-            return true;
-        }
-    }
-    return false;
+// hàm kiểm tra xem giá trị x có tồn tại trong mảng arr không
+bool isExisted(int* arr, int size, int x) {
+	for (int i = 0; i < size; i++) {
+		if (arr[i] == x) {
+			return true; // tồn tại x trong mảng đang xét
+		}
+	}
+	return false; // không tồn tại x trong mảng đang xét
 }
 
-void showArrayElements(const int* const arr1,
-    const int* const arr2, const int m, const int n,
-    function<void(const int* const, const int, const int* const, const int)> showResult) {
-    showResult(arr1, m, arr2, n);
+// hiển thị kết quả
+void showElements(int* arr1, int* arr2, int size1, int size2,
+	function<void(int*, int*, int, int)> myFunction) {
+	myFunction(arr1, arr2, size1, size2);
+	cout << endl;
 }
 
 int main() {
-    int arr1[SIZE];
-    int arr2[SIZE];
-    int m, n;
-    getArrayElements(arr1, m);
-    getArrayElements(arr2, n);
-    cout << "Cac phan tu chung: " << endl;
-    showArrayElements(arr1, arr2, m, n, commonElements);
+	int arr1[SIZE];
+	int arr2[SIZE];
+	int m, n;
+	function<void(int*, int&)> inputFunc = getArrayElements;
+	cout << "Nhap cac phan tu mang thu nhat: \n";
+	inputFunc(arr1, m);
+	cout << "Nhap cac phan tu mang thu hai: \n";
+	inputFunc(arr2, n);
 
-    cout << "Cac phan tu chi xuat hien trong arr1: " << endl;
-    showArrayElements(arr1, arr2, m, n, existInFirstArrayOnly);
-
-    return 0;
+	// show ket qua
+	cout << "Cac phan tu chung cua hai mang: \n";
+	showElements(arr1, arr2, m, n, commonElements);
+	cout << "Cac phan tu rieng cua mang thu nhat: \n";
+	showElements(arr1, arr2, m, n, privateElement);
 }
