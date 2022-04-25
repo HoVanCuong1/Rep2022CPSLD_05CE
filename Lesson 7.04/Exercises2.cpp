@@ -208,11 +208,14 @@ bool removeFirstX(LinkedList& head, string id) {
 		return false;
 	}
 }
-// Xóa sinh viên có id cho trước khỏi danh sách
+// Xóa tất cả các sinh viên có điểm gpa cho trước khỏi danh sách
 bool removeAllWithGPA(LinkedList& head, float gpa) {
 	if (head != nullptr) {
 		if (head->data.gpa == gpa) {
-			return removeFirst(head);
+			while (head != nullptr && head->data.gpa == gpa) {
+				removeFirst(head);
+			}
+			return true;
 		}
 		else {
 			Node* p = head;
@@ -229,9 +232,7 @@ bool removeAllWithGPA(LinkedList& head, float gpa) {
 			return true;
 		}
 	}
-	else {
-		return false;
-	}
+	return false;
 }
 // Sắp xếp các phần tử trong danh sách
 void sort(LinkedList& head) {
