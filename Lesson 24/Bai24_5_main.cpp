@@ -20,7 +20,8 @@ int main() {
     findMax(a, b, c, max);
     findMin(a, b, c, min);
     averageValue(a, b, c, sumAvg, prodAvg);
-    secondMinMax(a, b, c, secondMin, secondMax);
+    findSecondMin(a, b, c, secondMin);
+    findSecondMax(a, b, c, secondMax);
     
     cout << "a = " << a << ", b = " << b << ", c = " << c << endl;
     cout << "max = " << max << endl;

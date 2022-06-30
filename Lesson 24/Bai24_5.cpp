@@ -39,29 +39,11 @@ void averageValue(int a, int b, int c, double &sumAvg, double &prodAvg) {
     prodAvg = (a * b * c) / 3.0;
 }
 
-void secondMinMax(int a, int b, int c, int &secondMin, int &secondMax) {
-    int max, min;    
-    findMax(a, b, c, max);
+void findSecondMin(int a, int b, int c, int &secondMin) {
+    int min, max;  
     findMin(a, b, c, min);
-    if (min == max) {
-        secondMax = max;
-        secondMin = min;
-        return;
-    }
-    secondMax = min;
+    findMax(a, b, c, max);
     secondMin = max;
-    if(secondMax < a && a != max) {
-        secondMax = a;
-    }
-    if(secondMax < b && b != max) {
-        secondMax = b;
-    }
-    if(secondMax < c && c != max) {
-        secondMax = c;
-    }
-    if (secondMax == min) {
-
-    }
     if(secondMin > a && a != min) {
         secondMin = a;
     }
@@ -71,10 +53,30 @@ void secondMinMax(int a, int b, int c, int &secondMin, int &secondMax) {
     if(secondMin > c && c != min) {
         secondMin = c;
     }
-    if (secondMax == max) {
-        secondMax = min;
-    }
     if (secondMin == max) {
         secondMin = max;
+    }
+}
+
+void findSecondMax(int a, int b, int c, int& secondMax) {
+    int max, min;
+    findMax(a, b, c, max);
+    findMin(a, b, c, min);
+    if (min == max) {
+        secondMax = max;
+        return;
+    }
+    secondMax = min;
+    if (secondMax < a && a != max) {
+        secondMax = a;
+    }
+    if (secondMax < b && b != max) {
+        secondMax = b;
+    }
+    if (secondMax < c && c != max) {
+        secondMax = c;
+    }
+    if (secondMax == max) {
+        secondMax = min;
     }
 }
