@@ -40,9 +40,14 @@ void averageValue(int a, int b, int c, double &sumAvg, double &prodAvg) {
 }
 
 void secondMinMax(int a, int b, int c, int &secondMin, int &secondMax) {
-    int max, min;
+    int max, min;    
     findMax(a, b, c, max);
     findMin(a, b, c, min);
+    if (min == max) {
+        secondMax = max;
+        secondMin = min;
+        return;
+    }
     secondMax = min;
     secondMin = max;
     if(secondMax < a && a != max) {
@@ -54,7 +59,9 @@ void secondMinMax(int a, int b, int c, int &secondMin, int &secondMax) {
     if(secondMax < c && c != max) {
         secondMax = c;
     }
-    
+    if (secondMax == min) {
+
+    }
     if(secondMin > a && a != min) {
         secondMin = a;
     }
@@ -63,5 +70,11 @@ void secondMinMax(int a, int b, int c, int &secondMin, int &secondMax) {
     }
     if(secondMin > c && c != min) {
         secondMin = c;
+    }
+    if (secondMax == max) {
+        secondMax = min;
+    }
+    if (secondMin == max) {
+        secondMin = max;
     }
 }
